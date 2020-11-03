@@ -5,19 +5,21 @@ const mysql = require('mysql2/promise');
 port = parseInt(process.argv[2]) || parseInt(process.env.PORT) || 3890;
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
+  // host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST || 'db4free.net',
   port: process.env.DB_PORT || 3306,
   password: process.env.DB_PASSWORD,
   user: process.env.DB_USER,
-  database: process.env.DB_DATABASE || 'leisure',
+  // database: process.env.DB_DATABASE || 'leisure',
+  database: process.env.DB_DATABASE || 'leisuredb',
   connectionLimit: process.env.DB_CONNECTION_LIMIT || 4,
   timezone: '+08:00',
 });
 
 // SQL Query String
-const SQL_LIST = 'SELECT * FROM TV_SHOWS ORDER BY tvid DESC LIMIT ? OFFSET ?';
-const SQL_FIND_BY_TVID = 'SELECT * FROM TV_SHOWS WHERE tvid= ?';
-const SQL_LIST_LENGTH = `SELECT COUNT(*) as count FROM TV_SHOWS `;
+const SQL_LIST = 'SELECT * FROM tv_shows ORDER BY tvid DESC LIMIT ? OFFSET ?';
+const SQL_FIND_BY_TVID = 'SELECT * FROM tv_shows WHERE tvid= ?';
+const SQL_LIST_LENGTH = `SELECT COUNT(*) as count FROM tv_shows `;
 
 const app = express();
 app.engine('hbs', hbs({ defaultLayout: 'default.hbs' }));
@@ -29,7 +31,7 @@ const startApp = async function (app, pool) {
     console.log('Ping-ing DB');
     await conn.ping();
 
-    app.listen(port, () => console.log(`Running on http://localhost:${port} `));
+    app.listen(port, () => console.log(`Running on http://localhost:${port}`));
     await conn.release;
   } catch (err) {
     console.log(`Could not start, ${err}`);
