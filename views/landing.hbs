@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>List of TV Show</h1>
+  <ul class="list-group">
+    {{#each list}}
+    <li class="list-group-item list-group-item-action" data-toggle="list">
+      <a class="text-decoration-none" href="/show/{{this.tvid}}">{{this.name}}</a>
+    </li>
+    {{/each}}
+  </ul>
+
+
+  <form action="/" method="get">
+    <div class="row">
+      <div class="col-2">
+        {{#if prevBtnState}}
+        <button class="btn btn-warning" type="submit" name='btnState' value='prev'>Previous Page</button>
+        {{/if }}
+      </div>
+      <div class="col-2">
+        {{#if nextBtnState}}
+        <button class="btn btn-warning" type="submit" name='btnState' value='next'>Next Page</button>
+        {{/if }}
+      </div>
+      <div class="col-6">
+        <input type="hidden" name="offset" value='{{offset}}'>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    Show Detail
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{result.name}}</h5>
+    <img src="{{result.image}}" alt="" class=''>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><i class="fas fa-language"></i> {{result.lang}}</li>
+      <li class="list-group-item"><i class="fas fa-star"></i> {{result.rating}} / 10.0</li>
+    </ul>
+
+    {{#if result.official_site}}
+    <a href="{{result.official_site}}" target="_blank" class="btn btn-primary"><i class="fas fa-link"></i>Website</a>
+    {{/if }}
+    <br>
+    {{{result.summary}}}
+    <br>
+    <a href="/" class="btn btn-primary">Return Home</a>
+  </div>
+</div>
